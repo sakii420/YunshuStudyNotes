@@ -25,7 +25,7 @@
 6. 查看最近的提交记录，并在个人分支上推送：
 
    ```bash
-   git log --oneline -5
+   git log --oneline
    git push -u origin <当前分支名>
    ```
 
@@ -33,9 +33,7 @@
 
 - `profile.md` 位于正确的个人目录，且包含要求的三项内容。
 - `git status` 显示本题改动已提交。
-- `git log -1 --oneline` 的最新提交信息为 `add personal git profile`。
+- `git log --oneline` 的最新提交信息为 `add personal git profile`。
 - GitHub 上能看到该个人分支和对应文件。
 
-## 思考题
 
-`git add` 和 `git commit` 分别改变了哪一部分状态？请在验收时口头说明。
