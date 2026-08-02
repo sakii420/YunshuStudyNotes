@@ -4,21 +4,19 @@
 
 ## 训练流程
 
-1. 完成 [前置准备](exercises/00-setup.md)，配置 Git 环境并连接仓库
-2. 阅读 exercises 中的任务
-3. 创建自己的分支
-4. 完成任务
-5. 提交 commit
-6. 推送到 GitHub
-7. 创建 Pull Request
-8. 由组长审核
+1. 阅读 exercises 中的任务
+2. 创建自己的分支
+3. 完成任务
+4. 提交 commit
+5. 推送到 GitHub
+6. 创建 Pull Request
+7. 由组长审核
 
 ## 目录结构
 
 ```
 ├── README.md          # 本说明文件
 ├── exercises/         # 练习题目录
-│   ├── 00-setup.md    # 前置准备：连接仓库
 │   ├── 01-basic.md    # 基础操作
 │   ├── 02-branch.md   # 分支管理
 │   ├── 03-merge.md    # 合并操作
