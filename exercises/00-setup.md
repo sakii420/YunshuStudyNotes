@@ -30,9 +30,36 @@ git config --global user.email "你的邮箱@example.com"
 git config --list
 ```
 
-### 第三步：配置 SSH 密钥（推荐方式）
+### 第三步：克隆仓库（HTTPS 方式）
 
-用 SSH 方式连接仓库，以后 push pull 都不用输密码，更方便。
+直接用 HTTPS 方式克隆仓库，最简单直接：
+
+```bash
+git clone https://github.com/sakii420/YunshuStudyNotes.git
+```
+
+> 第一次 push 的时候会提示输入 GitHub 用户名和密码（现在密码要用 Personal Access Token，不是登录密码）。
+>
+> Windows 用户推荐安装 **Git Credential Manager**（安装 Git 时默认带的），这样只需要输一次，以后就不用再输了。
+
+### 第四步：进入仓库目录
+
+```bash
+cd YunshuStudyNotes
+```
+
+查看当前状态：
+```bash
+git status
+```
+
+看到 `On branch main` 之类的提示就 OK 了。
+
+---
+
+## 进阶：配置 SSH 免密登录（可选）
+
+如果你觉得每次 push 都要输密码麻烦，可以配置 SSH 密钥，配置一次以后都不用输密码了。
 
 1. 生成 SSH 密钥：
    ```bash
@@ -60,36 +87,16 @@ git config --list
    ```
    看到 `Hi xxx! You've successfully authenticated...` 就说明连接成功了。
 
-### 第四步：克隆仓库
-
-```bash
-git clone git@github.com:sakii420/YunshuStudyNotes.git
-```
-
-> 如果用 HTTPS 方式也可以：
-> ```bash
-> git clone https://github.com/sakii420/YunshuStudyNotes.git
-> ```
-
-### 第五步：进入仓库目录
-
-```bash
-cd YunshuStudyNotes
-```
-
-查看当前状态：
-```bash
-git status
-```
-
-看到 `On branch main` 之类的提示就 OK 了。
+5. 用 SSH 方式克隆仓库：
+   ```bash
+   git clone git@github.com:sakii420/YunshuStudyNotes.git
+   ```
 
 ## 验收方式
 
 - 能成功克隆仓库到本地
 - 能看到仓库里的文件
 - `git status` 命令能正常执行
-- （可选）能成功配置 SSH 并测试通过
 
 ---
 
@@ -102,7 +109,10 @@ A：国内访问 GitHub 经常抽风，可以：
 3. 用手机热点试试
 
 ### Q：我之前已经配置过 Git 了，还要再配吗？
-A：不用，直接从第四步克隆仓库开始就行。
+A：不用，直接从第三步克隆仓库开始就行。
 
-### Q：我用 HTTPS 还是 SSH？
-A：推荐 SSH，配置一次以后都不用输密码。HTTPS 每次 push 都要输用户名密码（或者 token），比较麻烦。
+### Q：push 的时候提示认证失败怎么办？
+A：现在 GitHub 不支持用密码 push 了，需要用 Personal Access Token：
+1. 去 GitHub → Settings → Developer settings → Personal access tokens
+2. 生成一个新的 token，勾选 repo 权限
+3. push 的时候用户名填 GitHub 用户名，密码填这个 token
