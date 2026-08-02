@@ -2,41 +2,44 @@
 
 ## 任务目标
 
-掌握 `branch`、`switch` 和 `checkout`，理解分支是指向提交的可移动指针。
+掌握 `branch`、`switch`、`checkout` 的使用，理解分支的概念和作用。
 
 ## 操作要求
 
-1. 切换到最新的 `main`：
-
+1. 查看当前所有分支：
    ```bash
-   git switch main
-   git pull --ff-only origin main
+   git branch -a
    ```
 
-2. 创建并切换到个人分支，分支格式为 `feature/name`：
-
+2. 创建个人分支，命名格式：`feature/名字拼音`
+   例如：
    ```bash
-   git switch -c feature/<姓名拼音>
+   git switch -c feature/hu_han
    ```
 
-   旧版 Git 可使用等价命令 `git checkout -b feature/<姓名拼音>`，两种方式任选一种。
+3. 确认已切换到新分支：
+   ```bash
+   git branch
+   ```
 
-3. 使用 `git branch --show-current` 确认当前分支。
-4. 在自己的成员目录新增 `branch.md`，记录：当前分支名、创建分支所用命令、`switch` 与 `checkout` 的区别。
-5. 暂存并提交，提交信息必须为：
+4. 在自己的成员目录下新增 `branch.md` 文件，内容写：
+   - 你创建的分支名
+   - 你对分支的理解（一句话）
 
-   ```text
-   create personal branch
+5. 提交修改：
+   ```bash
+   git add members/<自己的目录>/branch.md
+   git commit -m "create personal branch"
+   ```
+
+6. 推送到远程仓库：
+   ```bash
+   git push -u origin feature/<你的名字>
    ```
 
 ## 验收方式
 
-- `git branch --show-current` 输出正确的个人分支名。
-- `branch.md` 位于自己的成员目录，并回答了三项内容。
-- `git log -1 --oneline` 显示提交信息 `create personal branch`。
-- 执行 `git branch --contains HEAD` 能看到当前个人分支。
-
-## 常见问题
-
-- 如果提示分支已经存在，使用 `git switch feature/<姓名拼音>`，不要重复创建。
-- 如果工作区有未提交改动，先确认改动归属并提交，不要随意丢弃。
+- 本地存在以 `feature/` 开头的个人分支。
+- 个人目录下有 `branch.md` 文件。
+- 最新 commit message 为 `create personal branch`。
+- GitHub 上能看到对应的远程分支。

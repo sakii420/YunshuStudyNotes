@@ -2,59 +2,74 @@
 
 ## 任务目标
 
-掌握 `merge`，能识别 fast-forward 与 merge commit，并能用图形化日志检查合并历史。
+掌握 `merge` 的使用，理解 fast-forward 和 merge commit 的区别。
 
 ## 操作要求
 
-本练习先在本地练习分支上演示两种合并，不直接推送 `main`。
+### 第一部分：fast-forward 合并
 
-### A. Fast-forward 合并
-
-1. 从当前个人分支创建实验基线分支：
-
+1. 确保你在 main 分支上：
    ```bash
-   git switch -c practice/<姓名拼音>-merge
-   git switch -c practice/<姓名拼音>-ff
+   git switch main
    ```
 
-2. 在自己的 `branch.md` 末尾增加一段“fast-forward 实验”，提交为 `practice fast forward merge`。
-3. 回到基线分支并合并：
-
+2. 创建一个新分支 `ff-demo`：
    ```bash
-   git switch practice/<姓名拼音>-merge
-   git merge practice/<姓名拼音>-ff
+   git switch -c ff-demo
    ```
 
-4. 观察输出中是否出现 `Fast-forward`。
-
-### B. Merge commit 合并
-
-1. 从实验基线创建新分支：
-
+3. 在自己的成员目录下创建 `merge-ff.md`，写一句话，然后提交：
    ```bash
-   git switch -c practice/<姓名拼音>-merge-commit
+   git add members/<自己的目录>/merge-ff.md
+   git commit -m "add fast forward demo file"
    ```
 
-2. 在自己的 `branch.md` 增加一段“merge commit 实验”，提交为 `practice merge commit`。
-3. 回到实验基线，先在自己的 `profile.md` 增加一行内容并提交为 `update profile before merge`，使两个分支产生不同提交。
-4. 合并并保留合并提交：
-
+4. 切回 main 分支，进行合并：
    ```bash
-   git merge --no-ff practice/<姓名拼音>-merge-commit -m "merge personal practice branch"
+   git switch main
+   git merge ff-demo
    ```
+
+5. 观察合并结果，这是 fast-forward 合并（没有产生新的 commit）。
+
+### 第二部分：merge commit 合并
+
+1. 在 main 分支上，在自己的成员目录下创建 `merge-main.md`，写一句话，提交：
+   ```bash
+   git add members/<自己的目录>/merge-main.md
+   git commit -m "add file on main branch"
+   ```
+
+2. 创建一个新分支 `mc-demo`：
+   ```bash
+   git switch -c mc-demo
+   ```
+
+3. 在自己的成员目录下创建 `merge-branch.md`，写一句话，提交：
+   ```bash
+   git add members/<自己的目录>/merge-branch.md
+   git commit -m "add file on feature branch"
+   ```
+
+4. 切回 main 分支，进行合并：
+   ```bash
+   git switch main
+   git merge mc-demo
+   ```
+
+5. 观察合并结果，这次产生了一个新的 merge commit。
+
+### 第三部分：查看合并历史
+
+1. 用图形化方式查看提交历史：
+   ```bash
+   git log --graph --all --oneline
+   ```
+
+2. 截图保存到自己的成员目录，命名为 `merge-graph.png`（可选）。
 
 ## 验收方式
 
-执行：
-
-```bash
-git log --graph --all --oneline --decorate
-```
-
-验收时应能指出：
-
-- 哪一次合并是 fast-forward。
-- 哪一个节点是 merge commit，且该节点有两个父提交。
-- 为什么 `--no-ff` 会保留分支合并节点。
-
-完成实验后，将需要保留的学习成果通过个人功能分支和 Pull Request 交给组长审核；不要直接推送 `main`。
+- 能解释 fast-forward 和 merge commit 的区别。
+- `git log --graph --all` 能看到完整的合并历史。
+- 三个 demo 文件都存在于 main 分支。

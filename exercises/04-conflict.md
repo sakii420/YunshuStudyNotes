@@ -2,50 +2,67 @@
 
 ## 任务目标
 
-认识冲突标记，掌握 `status`、手动编辑、`add` 和 `commit` 组成的冲突解决流程。
+掌握冲突（conflict）的产生原因和解决方法。
 
-## 准备
+## 准备工作
 
-公共文件 `GitPractice/conflict.txt` 的初始内容为：
-
-```text
+组长需要先在 main 分支的 `conflict.txt` 中写入初始内容：
+```
 Git is powerful.
 ```
 
-本练习由王睿轩和杜振羽协作完成。开始前，两人都必须从同一个最新 `main` 提交创建各自分支。
+## 操作要求（两人一组完成）
 
-## 分工
+### 第一步：制造冲突
 
-- 王睿轩在 `feature/wang_ruixuan-conflict` 中将该行改为 `Git is easy.`，提交信息为 `describe git as easy`。
-- 杜振羽在 `feature/du_zhenyu-conflict` 中将该行改为 `Git is difficult.`，提交信息为 `describe git as difficult`。
+1. **成员 A（王睿轩）**：
+   - 创建自己的分支
+   - 修改 `conflict.txt` 第一行为：`Git is easy.`
+   - 提交并推送到远程
+   - 提 PR 合并到 main（先合并这个）
 
-两人分别推送分支。组长先将其中一个分支合并到用于验收的练习分支，再合并另一个分支，从而触发冲突。不要为制造冲突直接改动或推送远程 `main`。
+2. **成员 B（杜振羽）**：
+   - 创建自己的分支（基于合并前的 main）
+   - 修改 `conflict.txt` 第一行为：`Git is difficult.`
+   - 提交并推送到远程
+   - 提 PR 合并到 main（这个会产生冲突）
 
-## 冲突解决步骤
+### 第二步：解决冲突
 
-1. 执行 `git status`，确认冲突文件。
-2. 打开 `conflict.txt`，找到以下标记并理解两侧内容：
-
-   ```text
-   <<<<<<<
-   =======
-   >>>>>>>
+1. 成员 B 在本地拉取最新的 main：
+   ```bash
+   git switch main
+   git pull
    ```
 
-3. 协商最终语句，删除全部冲突标记，保证文件只保留一条完整、合理的英文句子。
-4. 标记为已解决并提交：
-
+2. 切回自己的分支，合并 main：
    ```bash
-   git add GitPractice/conflict.txt
+   git switch feature/<你的名字>
+   git merge main
+   ```
+
+3. 此时会提示冲突，打开 `conflict.txt`，你会看到类似这样的内容：
+   ```
+   <<<<<<< HEAD
+   Git is difficult.
+   =======
+   Git is easy.
+   >>>>>>> main
+   ```
+
+4. 手动解决冲突（保留你认为合适的内容，或者合并成一句话），删除 `<<<<<<<`、`=======`、`>>>>>>>` 这些标记。
+
+5. 提交解决后的结果：
+   ```bash
+   git add conflict.txt
    git commit -m "resolve merge conflict"
    ```
 
-如果需要放弃本次尚未完成的合并，可使用 `git merge --abort` 回到合并前状态。
+6. 推送到远程，再看 PR 应该就可以合并了。
 
 ## 验收方式
 
-- 合并过程中确实出现冲突，`git status` 曾显示 `both modified`。
-- 文件中不存在 `<<<<<<<`、`=======`、`>>>>>>>`。
-- 解决冲突的提交信息为 `resolve merge conflict`。
-- `git log --graph --all --oneline` 能展示两条修改历史及最终合并结果。
-- 两位成员都能说明最终内容为何这样选择。
+- 能说清楚冲突是怎么产生的。
+- `conflict.txt` 最终内容合理，没有冲突标记。
+- 最新 commit message 为 `resolve merge conflict`。
+- PR 能够成功合并到 main。
