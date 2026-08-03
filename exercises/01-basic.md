@@ -12,7 +12,7 @@
 
 3. 在 `members/自己的名字/` 目录下创建 `profile.md`，写一段自我介绍。
 
-4. 只暂存本题文件，不要使用 `git add .` 把无关文件一起加入：
+4. 只暂存本题文件，不要使用 `git add .` 应当：
    ```bash
    git add members/<自己的目录>/profile.md
    ```
