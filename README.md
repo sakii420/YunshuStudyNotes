@@ -60,3 +60,5 @@ git commit -m "xxx"
 git push origin feature/name # 推送到个人分支
 # 然后创建 Pull Request
 ```
+
+- <hu_han>：已完成 Git 基础学习
