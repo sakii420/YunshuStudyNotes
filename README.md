@@ -4,13 +4,7 @@
 
 ## 训练流程
 
-1. 阅读 exercises 中的任务
-2. 创建自己的分支
-3. 完成任务
-4. 提交 commit
-5. 推送到 GitHub
-6. 创建 Pull Request
-7. 由组长审核
+阅读exercises目录下的任务，逐个完成。
 
 ## 目录结构
 
