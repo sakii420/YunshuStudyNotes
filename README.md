@@ -56,4 +56,5 @@ git push origin feature/name # 推送到个人分支
 ```
 
 - <hu_han>：已完成 Git 基础学习
+<<<<<<< HEAD
 - <du_zhenyu>：已完成Git基础学习
